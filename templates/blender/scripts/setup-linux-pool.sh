@@ -4,13 +4,14 @@ apt-get update
 echo '# Installing imagemagick ...'
 apt-get install -y imagemagick
 echo '# Installing blender ...'
-mkdir blender-download && cd blender-download
-wget https://download.blender.org/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2
-tar -xvf blender-2.79b-linux-glibc219-x86_64.tar.bz2
-export PATH=$PATH:`pwd`/blender-2.79b-linux-glibc219-x86_64
-echo $PATH
-echo '# Installing python-pip ...'
-apt-get install -y python-pip
+snap install blender --channel=2.79/stable --classic
+echo '# Installing NVidia Drivers ...'
+wget https://us.download.nvidia.com/tesla/460.32.03/NVIDIA-Linux-x86_64-460.32.03.run
+chmod +x NVIDIA-Linux-x86_64-460.32.03.run
+sudo ./NVIDIA-Linux-x86_64-460.32.03.run -silent
+echo '# Installing additional tools ...'
+apt-get install -y terminator
+apt-get install -y dbus-x11
 echo "## DONE ##"
 exit $?
 
