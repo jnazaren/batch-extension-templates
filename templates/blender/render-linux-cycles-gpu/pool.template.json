@@ -1,0 +1,86 @@
+{
+    "parameters": {
+        "poolId": {
+            "type": "string",
+            "defaultValue": "blender-ubuntu-cycles-gpu",
+            "metadata": {
+                "description": "Id of the pool"
+            }
+        },
+        "dedicatedVmCount": {
+            "type": "int",
+            "defaultValue": 0,
+            "metadata": {
+                "description": "The number of dedicated nodes in the Azure Batch pool"
+            }
+        },
+        "lowPriorityVmCount": {
+            "type": "int",
+            "defaultValue": 1,
+            "metadata": {
+                "description": "The number of low priority nodes in the Azure Batch pool"
+            }
+        },
+        "vmSize": {
+            "type": "string",
+            "metadata": {
+                "description": "The size of the nodes that run the tasks in the pool"
+            },
+            "defaultValue": "Standard_NC6",
+            "allowedValues": [
+                "Standard_NC6",
+                "Standard_NC12",
+                "Standard_NC24",
+                "Standard_NC6s_v2",
+                "Standard_NC12s_v2",
+                "Standard_NC24s_v2",
+                "Standard_NC6s_v3",
+                "Standard_NC12s_v3",
+                "Standard_NC24s_v3",
+                "Standard_NV6",
+                "Standard_NV12",
+                "Standard_NV24",
+                "Standard_NV12s_v3",
+                "Standard_NV24s_v3",
+                "Standard_NV48s_v3"
+            ]
+        }
+    },
+    "variables": {
+        "osType": {
+            "imageReference": {
+                "publisher": "Canonical",
+                "offer": "UbuntuServer",
+                "sku": "16.04.0-LTS",
+                "version": "latest"
+            },
+            "nodeAgentSKUId": "batch.node.ubuntu 16.04"
+        }
+    },
+    "pool": {
+        "id": "[parameters('poolId')]",
+        "displayName": "Blender Ubuntu Cycles GPU pool",
+        "vmSize": "[parameters('vmSize')]",
+        "virtualMachineConfiguration": "[variables('osType')]",
+        "targetDedicatedNodes": "[parameters('dedicatedVmCount')]",
+        "targetLowPriorityNodes": "[parameters('lowPriorityVmCount')]",
+        "enableAutoScale": false,
+        "startTask": {
+            "commandLine": "/bin/bash -c ./setup-linux-pool.sh",
+            "waitForSuccess": true,
+            "maxTaskRetryCount": 0,
+            "userIdentity": {
+                "autoUser": {
+                    "scope": "pool",
+                    "elevationLevel": "admin"
+                }
+            },
+            "resourceFiles": [
+                {
+                    "httpUrl": "https://raw.githubusercontent.com/Azure/batch-extension-templates/master/templates/blender/scripts/setup-linux-pool.sh",
+                    "filePath": "setup-linux-pool.sh"
+                }
+            ]
+        }
+    }
+}
