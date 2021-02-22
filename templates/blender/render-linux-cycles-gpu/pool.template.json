@@ -77,7 +77,7 @@
             },
             "resourceFiles": [
                 {
-                    "httpUrl": "https://raw.githubusercontent.com/Azure/batch-extension-templates/master/templates/blender/scripts/setup-linux-pool.sh",
+                    "httpUrl": "https://raw.githubusercontent.com/jnazaren/batch-extension-templates/linux-cycles-gpu/templates/blender/scripts/setup-linux-pool.sh",
                     "filePath": "setup-linux-pool.sh"
                 }
             ]
