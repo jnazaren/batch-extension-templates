@@ -11,12 +11,6 @@ export PATH=$PATH:`pwd`/blender-2.79b-linux-glibc219-x86_64
 echo $PATH
 echo '# Installing python-pip ...'
 apt-get install -y python-pip
-echo '# Installing packages-microsoft-prod.deb ...'
-wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-echo '# Installing apt-transport-https ...'
-sudo apt-get -y install apt-transport-https
-./install.sh
 echo "## DONE ##"
 exit $?
 
