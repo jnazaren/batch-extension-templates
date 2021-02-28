@@ -4,7 +4,7 @@ apt-get update
 echo '# Installing imagemagick ...'
 apt-get install -y imagemagick
 echo '# Installing build tools ...'
-apt-get install -y build-essential
+apt-get install -y build-essential libglu1-mesa
 echo '# Installing blender ...'
 snap install blender --channel=2.79/stable --classic
 echo '# Installing NVidia Drivers ...'
