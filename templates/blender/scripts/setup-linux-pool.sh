@@ -3,6 +3,8 @@ echo '# Running apt-get update ...'
 apt-get update
 echo '# Installing imagemagick ...'
 apt-get install -y imagemagick
+echo '# Installing gcc ...'
+apt-get install -y gcc
 echo '# Installing blender ...'
 snap install blender --channel=2.79/stable --classic
 echo '# Installing NVidia Drivers ...'

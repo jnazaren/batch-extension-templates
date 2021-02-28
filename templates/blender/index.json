@@ -20,6 +20,11 @@
         "description": "Distributed rendering for Blender. Render tiles on multiple Ubuntu nodes with the CYCLES rendering engine."
     },
     {
+        "id": "render-windows-cycles-gpu",
+        "name": "Render frames on Ubuntu Server GPU machines",
+        "description": "Render a Blender scene using Ubuntu Server GPU machines and the Blender CYCLES rendering engine."
+    },
+    {
         "id": "render-windows",
         "name": "Render frames on Windows Server",
         "description": "Render a Blender scene using Windows Server."
